@@ -6,9 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.kata.spring.boot_security.demo.models.User;
+import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
-import ru.kata.spring.boot_security.demo.security.UserDetailsImpl;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -88,6 +87,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (user.isEmpty()) {
             throw new UsernameNotFoundException(String.format("User '%s' not found!", username));
         }
-        return new UserDetailsImpl(user.get());
+        return user.get();
     }
 }
